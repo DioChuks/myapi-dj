@@ -1,3 +1,4 @@
+from ast import parse
 from pathlib import Path
 from email.policy import default
 import os
@@ -16,7 +17,7 @@ SECURITY_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -74,7 +75,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 } """
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-DATABASE = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)}
+DATABASE = {'default': config('DATABASE_URL', default=default_dburl, cast=parse)}
 
 
 # Password validation
